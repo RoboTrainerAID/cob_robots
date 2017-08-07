@@ -14,7 +14,6 @@
   <author email="fmw@ipa.fhg.de">Florian Weisshardt</author>
 
   <buildtool_depend>catkin</buildtool_depend>
-  
   <exec_depend>cob_calibration_data</exec_depend>
   <exec_depend>cob_description</exec_depend>
   <exec_depend>cob_omni_drive_controller</exec_depend>
