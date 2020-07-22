@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro"
+       name="robotrainer2" >
+
+  <!-- common stuff -->
+  <xacro:include filename="$(find cob_description)/urdf/common.xacro" />
+  <xacro:include filename="$(find cob_description)/urdf/materials.urdf.xacro" />
+
+  <!-- calibration -->
+  <xacro:include filename="$(find cob_hardware_config)/robots/robotrainer2/urdf/properties.urdf.xacro" />
+
+  <!-- base -->
+  <xacro:include filename="$(find cob_description)/urdf/robotrainer2/base.urdf.xacro" />
+
+  <!-- sensors -->
+  <xacro:include filename="$(find cob_description)/urdf/sensors/sick_s300_laser.urdf.xacro"/>
+
+
+  <!-- composition of the robot -->
+  <xacro:base name="base"/>
+  <!-- laser scanners -->
+  <xacro:sick_s300_laser_v0 name="base_laser_left" parent="base">
+    <origin xyz="${laser_left_x} ${laser_left_y} ${laser_left_z}" rpy="${laser_left_roll} ${laser_left_pitch} ${laser_left_yaw}" />
+  </xacro:sick_s300_laser_v0>
+  <xacro:sick_s300_laser_v0 name="base_laser_right" parent="base">
+    <origin xyz="${laser_right_x} ${laser_right_y} ${laser_right_z}" rpy="${laser_right_roll} ${laser_right_pitch} ${laser_right_yaw}" />
+  </xacro:sick_s300_laser_v0>
+  <xacro:sick_s300_laser_v0 name="base_laser_back" parent="base">
+    <origin xyz="${laser_back_x} ${laser_back_y} ${laser_back_z}" rpy="${laser_back_roll} ${laser_back_pitch} ${laser_back_yaw}" />
+  </xacro:sick_s300_laser_v0>
+
+
+  <xacro:include filename="$(find sr2_bringup)/urdf/components/mini58.urdf.xacro" />
+
+  <xacro:ati_mini58 name="fts" parent="base_link">
+    <origin xyz="-0.069992 0  0.579028" rpy="0 0 ${M_PI}" />
+  </xacro:ati_mini58>
+
+  <material name="red">
+    <color rgba="1 0 0 1"/>
+  </material>
+  <material name="green">
+    <color rgba="0 1 0 1"/>
+  </material>
+  <material name="blue">
+    <color rgba="0 0 1 1"/>
+  </material>
+  <material name="black">
+    <color rgba="0 0 1"/>
+  </material>
+  <material name="white">
+    <color rgba="1 1 1 1"/>
+  </material>
+
+  <!-- RoboTrainer Marker Joints -->
+  <joint name="robotrainer_front_marker_joint" type="fixed">
+    <origin xyz="${0.41+0.84} 0 0.01" rpy="0 0 0" />
+    <parent link="base_link"/>
+    <child link="robotrainer_front_marker" />
+  </joint>
+  <link name="robotrainer_front_marker">
+    <visual>
+      <geometry>
+        <cylinder length="0.02" radius="0.01"/>
+        <material name="green"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="robotrainer_left_marker_joint" type="fixed">
+    <origin xyz="0.2 0.49 0.01" rpy="0 0 0" />
+    <parent link="base_link"/>
+    <child link="robotrainer_left_marker" />
+  </joint>
+  <link name="robotrainer_left_marker">
+    <visual>
+      <geometry>
+        <cylinder length="0.02" radius="0.01"/>
+        <material name="red"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="robotrainer_right_marker_joint" type="fixed">
+    <origin xyz="0.2 -0.49 0.01" rpy="0 0 ${pi}" />
+    <parent link="base_link"/>
+    <child link="robotrainer_right_marker" />
+  </joint>
+  <link name="robotrainer_right_marker">
+    <visual>
+      <geometry>
+        <cylinder length="0.02" radius="0.01"/>
+        <material name="blue"/>
+      </geometry>
+    </visual>
+  </link>
+
+</robot>

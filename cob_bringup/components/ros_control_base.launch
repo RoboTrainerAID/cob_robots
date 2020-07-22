@@ -2,7 +2,7 @@
 <launch>
 	<arg name="robot"/>
 	<arg name="driver_yaml"/>
-        <arg name="canopen_driver_yaml"/>
+  <arg name="canopen_driver_yaml"/>
 	<arg name="controller_yaml"/>
 
 	<arg name="can_device" default="can0"/>
