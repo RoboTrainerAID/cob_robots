@@ -33,7 +33,7 @@
   <xacro:include filename="$(find sr2_bringup)/urdf/components/mini58.urdf.xacro" />
 
   <xacro:ati_mini58 name="fts" parent="base_link">
-    <origin xyz="-0.069992 0  0.579028" rpy="0 0 ${M_PI}" />
+    <origin xyz="-0.069992 0  0.579028" rpy="0 0 ${pi}" />
   </xacro:ati_mini58>
 
   <material name="red">
@@ -44,12 +44,6 @@
   </material>
   <material name="blue">
     <color rgba="0 0 1 1"/>
-  </material>
-  <material name="black">
-    <color rgba="0 0 1"/>
-  </material>
-  <material name="white">
-    <color rgba="1 1 1 1"/>
   </material>
 
   <!-- RoboTrainer Marker Joints -->
@@ -62,8 +56,8 @@
     <visual>
       <geometry>
         <cylinder length="0.02" radius="0.01"/>
-        <material name="green"/>
       </geometry>
+      <material name="green"/>
     </visual>
   </link>
   <joint name="robotrainer_left_marker_joint" type="fixed">
@@ -75,8 +69,8 @@
     <visual>
       <geometry>
         <cylinder length="0.02" radius="0.01"/>
-        <material name="red"/>
       </geometry>
+      <material name="red"/>
     </visual>
   </link>
   <joint name="robotrainer_right_marker_joint" type="fixed">
@@ -88,9 +82,69 @@
     <visual>
       <geometry>
         <cylinder length="0.02" radius="0.01"/>
-        <material name="blue"/>
       </geometry>
+      <material name="blue"/>
     </visual>
   </link>
+  
+
+  <!-- RoboTrainer Cameras -->
+  <joint name="robotrainer_baseplate_link_lower_legs_camera_holder_bottom" type="fixed">
+    <origin xyz="0.03 0 0.452" rpy="0 0 ${pi}" /> <!--+1 cm-->
+    <parent link="base_baseplate_link"/>
+    <child link="lower_legs_camera_holder_bottom" />
+  </joint>
+  <link name="lower_legs_camera_holder_bottom"/>
+  
+  <joint name="robotrainer_lower_legs_camera_holder_bottom_camera_fixture" type="fixed">
+    <origin xyz="0.02266 0 0.04557" rpy="0 ${50/180*pi} 0" />
+    <parent link="lower_legs_camera_holder_bottom"/>
+    <child link="lower_legs_camera_fixture" />
+  </joint>
+  <link name="lower_legs_camera_fixture"/>
+  
+  <joint name="robotrainer_lower_legs_camera_fixture_camera_link" type="fixed">
+    <origin xyz="0.06 0 0" rpy="0 0 0" />
+    <parent link="lower_legs_camera_fixture"/>
+    <child link="lower_legs_camera_link" />
+  </joint>
+  <link name="lower_legs_camera_link"/>
+  
+  <joint name="robotrainer_baseplate_link_upper_body_camera_holder_bottom" type="fixed">
+    <origin xyz="0.03 0 0.672" rpy="0 0 0" />
+    <parent link="base_baseplate_link"/>
+    <child link="upper_body_camera_holder_bottom" />
+  </joint>
+  <link name="upper_body_camera_holder_bottom"/>
+  
+  <joint name="robotrainer_upper_body_camera_holder_bottom_camera_fixture" type="fixed">
+    <origin xyz="0.2265 0 0.204461" rpy="0 ${-7.5/180*pi} ${pi}" />
+    <parent link="upper_body_camera_holder_bottom"/>
+    <child link="upper_body_camera_fixture" />
+  </joint>
+  <link name="upper_body_camera_fixture"/>
+  
+  <joint name="robotrainer_upper_body_camera_fixture_camera_link" type="fixed">
+    <origin xyz="0.06 0 0" rpy="0 0 0" />
+    <parent link="upper_body_camera_fixture"/>
+    <child link="upper_body_camera_link" />
+  </joint>
+  <link name="upper_body_camera_link"/>
+  
+  
+  
+<!--  <joint name="robotrainer_lower_legs_camera" type="fixed">
+    <origin xyz="0 0 0.76" rpy="0 ${38/180*pi} ${pi}" />
+    <parent link="base_link"/>
+    <child link="lower_legs_camera_link" />
+  </joint>
+  <link name="lower_legs_camera_link"/>
+  
+    <joint name="robotrainer_upper_body_camera" type="fixed">
+    <origin xyz="0 0 1.2" rpy="0 0 ${pi}" />
+    <parent link="base_link"/>
+    <child link="upper_body_camera_link" />
+  </joint>
+  <link name="upper_body_camera_link"/>-->
 
 </robot>

@@ -36,14 +36,18 @@ analyzers:
     type: diagnostic_aggregator/AnalyzerGroup
     path: Sensors
     analyzers:
-      laser_rear:
+      laser_right:
         type: diagnostic_aggregator/GenericAnalyzer
         path: Scan Right
         contains: 'laser_right'
-      laser_front:
+      laser_left:
         type: diagnostic_aggregator/GenericAnalyzer
         path: Scan Left
         contains: 'laser_left'
+      laser_back:
+        type: diagnostic_aggregator/GenericAnalyzer
+        path: Scan Rear
+        contains: 'laser_back'
 
   motors:
     type: diagnostic_aggregator/AnalyzerGroup
@@ -52,9 +56,23 @@ analyzers:
       base:
         type: diagnostic_aggregator/GenericAnalyzer
         path: Base
-        contains: 'base/'
+        remove_prefix: base_driver
+        contains: ['caster', 'chain']
 
   safety:
     type: diagnostic_aggregator/GenericAnalyzer
     path: Safety
-    contains: 'safety'
+    contains: 'Safety'
+
+  controllers:
+    type: diagnostic_aggregator/GenericAnalyzer
+    path: Controllers
+    remove_prefix: base_driver
+    contains: 'RoboTrainer Controller'
+    discard_stale: true
+    
+  robotrainer_hw:
+    type: diagnostic_aggregator/GenericAnalyzer
+    path: RoboTrainerHW
+    contains: 'Battery'
+    discard_stale: true

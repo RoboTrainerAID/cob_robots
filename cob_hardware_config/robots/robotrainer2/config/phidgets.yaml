@@ -6,7 +6,7 @@ boards:
     serial_num: 532283               #phidget boards serial number
     #ratiometric: true
     sensors:                        #configured sensors of this board
-       em_butt_not_stop:
+       emergency_stop:
         type: digital_in
         index: 0
        em_scanner_not_stop:
@@ -15,3 +15,9 @@ boards:
        bat1:
         type: analog
         index: 0
+       sync_signal:
+        type: digital_out
+        index: 0
+        #       sync_signal2:
+        # type: digital_out
+        # index: 1
