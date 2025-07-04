@@ -189,6 +189,42 @@
     <child link="upper_body_camera_rgb_optical_frame" />
   </joint>
   <link name="upper_body_camera_rgb_optical_frame"/>
+
+  <!-- Upper Body Camera REALSENSE  -->
+  <joint name="robotrainer_realsense_connection" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="upper_body_camera_link"/>
+    <child link="upper_body_camera_realsense_link" />
+  </joint>
+  <link name="upper_body_camera_realsense_link"/>
+
+  <joint name="robotrainer_upper_body_camera_realsense_depth_frame" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="upper_body_camera_realsense_link"/>
+    <child link="upper_body_camera_realsense_depth_frame" />
+  </joint>
+  <link name="upper_body_camera_realsense_depth_frame"/>
+
+  <joint name="robotrainer_upper_body_camera_realsense_depth_optical_frame" type="fixed">
+    <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}" />
+    <parent link="upper_body_camera_realsense_depth_frame"/>
+    <child link="upper_body_camera_realsense_depth_optical_frame" />
+  </joint>
+  <link name="upper_body_camera_realsense_depth_optical_frame"/>
+
+  <joint name="robotrainer_upper_body_camera_realsense_color_frame" type="fixed">
+    <origin xyz="0 0.059 0" rpy="0.005 -0.003 0.002" />
+    <parent link="upper_body_camera_realsense_link"/>
+    <child link="upper_body_camera_realsense_color_frame" />
+  </joint>
+  <link name="upper_body_camera_realsense_color_frame"/>
+
+  <joint name="robotrainer_upper_body_camera_realsense_color_optical_frame" type="fixed">
+    <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}" />
+    <parent link="upper_body_camera_realsense_color_frame"/>
+    <child link="upper_body_camera_realsense_color_optical_frame" />
+  </joint>
+  <link name="upper_body_camera_realsense_color_optical_frame"/>
   
   
 <!--  <joint name="robotrainer_lower_legs_camera" type="fixed">
